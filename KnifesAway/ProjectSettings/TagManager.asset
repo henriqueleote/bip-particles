@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Knife
   - Secondary cvc
+  - Particle
   layers:
   - Default
   - TransparentFX
