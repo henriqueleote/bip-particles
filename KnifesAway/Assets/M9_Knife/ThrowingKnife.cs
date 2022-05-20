@@ -20,20 +20,18 @@ public class ThrowingKnife : MonoBehaviour
 
     void Update()
     {
-        
         if (isActive)
         {
             transform.SetParent(null);
-            rigidBody.velocity = new Vector3(7, -0.05F ,0);
-            
-            transform.Rotate(0, 10.0f, 0, Space.World);
+            rigidBody.velocity = new Vector3(7, -0.10F ,0);
+            transform.Rotate(0, 0, 5f, Space.World);
         } 
-
     }
 
     void Throw1()
     {
         isActive = !isActive;
+        transform.rotation = new Quaternion(80, 75, 0, 1);
     }
 
 }

@@ -56,7 +56,7 @@ public class CameraSwitch : MonoBehaviour
     {
         if (!lastCamera) return;
         var camera = cameras.Last();
-        camera.transform.RotateAround(deadGuy.transform.position, new Vector3(0, 1, 0), 2 * Time.deltaTime);
+        //camera.transform.RotateAround(deadGuy.transform.position, new Vector3(0, 1, 0), 2 * Time.deltaTime);
     }
 
     private void RotateAroundPlayer()
