@@ -2,20 +2,21 @@ using Cinemachine;
 using System;
 using UnityEngine;
 using System.Linq;
+using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class CameraSwitch : MonoBehaviour
 {
     public GameObject thrower;
     public GameObject deadGuy;
+    public GameObject cart;
     public CinemachineVirtualCamera[] cameras;
     private int currentIdx;
-    private bool lastCamera;
 
     // Start is called before the first frame update
     void Start()
     {
         currentIdx = 0;
-        lastCamera = false;
         foreach (var item in cameras) item.gameObject.SetActive(true);
         CinemachineCore.GetInputAxis = GetAxisCustom;
     }
@@ -41,7 +42,7 @@ public class CameraSwitch : MonoBehaviour
             {
                 currentIdx++;
                 cameras[i].Priority = 1;
-                if (i == cameras.Length - 1) RotateAroundPlayer();
+                if (currentIdx == cameras.Length - 1) HandleCart();
                 break;
             }
         }
@@ -52,15 +53,19 @@ public class CameraSwitch : MonoBehaviour
         return 0;
     }
 
-    private void LateUpdate()
+    public void HandleCart()
     {
-        if (!lastCamera) return;
-        var camera = cameras.Last();
-        //camera.transform.RotateAround(deadGuy.transform.position, new Vector3(0, 1, 0), 2 * Time.deltaTime);
+        cart.SetActive(true);
     }
 
-    private void RotateAroundPlayer()
+    public void ReloadScene()
     {
-        lastCamera = true;
+        StartCoroutine(HandleSceneRestart());
+    }
+
+    IEnumerator HandleSceneRestart()
+    {
+        yield return new WaitForSeconds(7);
+        SceneManager.LoadScene("SampleScene");
     }
 }

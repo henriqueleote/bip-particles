@@ -24,14 +24,15 @@ public class ThrowingKnife : MonoBehaviour
         {
             transform.SetParent(null);
             rigidBody.velocity = new Vector3(7, -0.10F ,0);
-            transform.Rotate(0, 0, 5f, Space.World);
+            transform.Rotate(0, 0, -5f, Space.World);
         } 
     }
 
     void Throw1()
     {
         isActive = !isActive;
-        transform.rotation = new Quaternion(80, 75, 0, 1);
+        transform.Rotate(0, 12, 0, Space.World);
+        //transform.rotation = new Quaternion(90, 75, 0, 1);
     }
 
 }

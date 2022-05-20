@@ -46,6 +46,7 @@ public class onHit : MonoBehaviour{
         if (timeToExplode < 0)
         {
             StartCoroutine(HandleExplosion());
+            mainCamera.BroadcastMessage("ReloadScene");
         }
         timeToExplode--;
     }
